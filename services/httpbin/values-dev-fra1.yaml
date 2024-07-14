@@ -4,7 +4,7 @@ app:
   deployment:
     image:
       registry: docker.io
-      repository: kennethreitz/httpbin2
+      repository: kennethreitz/httpbin
       tag: latest
     ports:
       - 80
