@@ -1,4 +1,4 @@
-generic-app:
+app:
   name: httpbin
   version: 0.0.0
   deployment:

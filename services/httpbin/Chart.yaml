@@ -23,6 +23,6 @@ version: 1.0.0
 appVersion: "1.0.0"
 
 dependencies:
-  - name: generic-app
+  - name: app
     version: ">= 1.0.0, < 2.0.0"
     repository: https://concordalabs.github.io/helm-charts
