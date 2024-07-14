@@ -1,10 +1,1 @@
-app:
-  name: httpbin
-  version: 0.0.0
-  deployment:
-    image:
-      registry: docker.io
-      repository: kennethreitz/httpbin
-      tag: latest
-    ports:
-      - 80
+

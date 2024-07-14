@@ -6,5 +6,7 @@ app:
       registry: docker.io
       repository: kennethreitz/httpbin
       tag: latest
+    env: {}
+    command: ["gunicorn", "-b", "0.0.0.0:3000", "httpbin:app", "-k", "gevent"]
     ports:
-      - 80
+      - 3000
