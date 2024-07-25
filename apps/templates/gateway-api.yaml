@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gateway-api
+  namespace: argocd
+spec:
+  destination:
+    namespace: gateway-api
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: ./services/gateway-api
+    repoURL: https://github.com/concordalabs/infra
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true
