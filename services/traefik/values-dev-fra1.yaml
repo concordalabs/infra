@@ -1,5 +1,13 @@
 ---
 traefik:
+  experimental:
+    kubernetesGateway:
+      enabled: true
+
+  providers:
+    kubernetesGateway:
+      enabled: true
+
   additionalArguments:
     - --entrypoints.websecure.http.tls.certresolver=cloudflare
     - --entrypoints.websecure.http.tls.domains[0].main=concordalabs.com
