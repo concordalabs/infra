@@ -15,26 +15,21 @@ traefik:
     web:
       redirectTo:
         port: websecure
+
   service:
-    type: NodePort
+    enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "*.concordalabs.com,concordalabs.com"
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 
   env:
-    - name: CF_API_EMAIL
+    - name: CF_DNS_API_TOKEN
       valueFrom:
         secretKeyRef:
-          key: CF_EMAIL
+          key: CF_DNS_API_TOKEN
           name: cloudflare-api-credentials
-    - name: CF_API_KEY
-      valueFrom:
-        secretKeyRef:
-          key: CF_TOKEN
-          name: cloudflare-api-credentials
-
-  ingressRoute:
-    dashboard:
-      enabled: true
 
   persistence:
-    enabled: false # temporary
+    enabled: false # temporary, should be true
     path: /certs
     size: 128Mi
