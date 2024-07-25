@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+spec:
+  destination:
+    namespace: external-dns
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: ./services/external-dns
+    repoURL: https://github.com/concordalabs/infra
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-{{ .Values.spec.clusterName }}.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true
