@@ -1,0 +1,21 @@
+nginx-gateway-fabric:
+  service:
+    enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "*.concordalabs.com,concordalabs.com"
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+  nginx:
+    lifecycle:
+      preStop:
+      exec:
+        command:
+          - /bin/sleep
+          - "40"
+  nginxGateway:
+    lifecycle:
+      preStop:
+      exec:
+        command:
+          - /usr/bin/gateway
+          - sleep
+          - --duration=40s # This flag is optional, the default is 30s
