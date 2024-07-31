@@ -25,4 +25,4 @@ spec:
         nginx-gateway.concordalabs.com/public: "true"
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
+      # - Replace=true # this is breaking argo
