@@ -20,9 +20,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        gateway.concordalabs.com/v1/public: "true"
     syncOptions:
       - CreateNamespace=true
       - Replace=true
-      managedNamespaceMetadata:
-        labels:
-          gateway.concordalabs.com/v1/public: "true"
