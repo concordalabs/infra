@@ -14,4 +14,4 @@ spec:
           from: Selector
           selector:
             matchLabels:
-              gateway.concordalabs.com/v1/public: "true"
+              nginx-gateway.concordalabs.com/public: "true"

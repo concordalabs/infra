@@ -22,7 +22,7 @@ spec:
       selfHeal: true
     managedNamespaceMetadata:
       labels:
-        gateway.concordalabs.com/v1/public: "true"
+        nginx-gateway.concordalabs.com/public: "true"
     syncOptions:
       - CreateNamespace=true
       - Replace=true
