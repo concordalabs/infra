@@ -20,6 +20,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        nginx-gateway.concordalabs.com/public: "true"
     syncOptions:
       - CreateNamespace=true
       - Replace=true
