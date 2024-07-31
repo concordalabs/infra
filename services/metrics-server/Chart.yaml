@@ -1,6 +1,5 @@
 apiVersion: v2
 name: metrics-server
-description: metrics-server
 
 # A chart can be either an 'application' or a 'library' chart.
 #

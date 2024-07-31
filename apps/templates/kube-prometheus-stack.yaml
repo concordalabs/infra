@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-prometheus-stack
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: ./services/kube-prometheus-stack
+    repoURL: https://github.com/concordalabs/infra
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-{{ .Values.spec.clusterName }}.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true
