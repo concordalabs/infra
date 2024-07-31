@@ -10,7 +10,7 @@ spec:
   source:
     path: ./config/crd/gateway-api/standard
     repoURL: https://github.com/nginxinc/nginx-gateway-fabric
-    targetRevision: master
+    targetRevision: v1.3.0
   syncPolicy:
     automated:
       prune: true
