@@ -23,3 +23,6 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - Replace=true
+      managedNamespaceMetadata:
+        labels:
+          gateway.concordalabs.com/v1/public: "true"
