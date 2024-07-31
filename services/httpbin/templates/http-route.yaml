@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      sectionName: http
+      namespace: gateway-api
   hostnames:
     - "httpbin.concordalabs.com"
   rules:
