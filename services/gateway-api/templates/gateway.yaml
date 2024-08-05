@@ -15,3 +15,20 @@ spec:
           selector:
             matchLabels:
               nginx-gateway.concordalabs.com/public: "true"
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: gateway-api
+  hostnames:
+    - "argocd.concordalabs.com"
+  rules:
+    - matches:
+      backendRefs:
+        - name: argo-argocd-server
+          port: 80
