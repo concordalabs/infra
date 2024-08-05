@@ -17,9 +17,9 @@ spec:
         - values.yaml
         - values-{{ .Values.spec.clusterName }}.yaml
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     managedNamespaceMetadata:
       labels:
         nginx-gateway.concordalabs.com/public: "true"
