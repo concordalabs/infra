@@ -1,0 +1,6 @@
+global:
+  domain: argocd.concordalabs.com
+
+configs:
+  params:
+    server.insecure: true

@@ -1,6 +1,6 @@
 bootstrap:
 	helm repo add argo https://argoproj.github.io/argo-helm
-	helm upgrade --install argo argo/argo-cd --namespace argocd
+	helm upgrade --install argo argo/argo-cd --namespace argocd --values argocd/values.yaml
 	argocd cluster add do-fra1-concorda-dev-fra1
 
 install/apps:
