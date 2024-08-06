@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: secrets-store
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: secrets-store
+  namespace: secrets-store
+spec:
+  provider:
+    kubernetes:
+      # with this, the store is able to pull only from `default` namespace
+      remoteNamespace: secrets-store
+      server:
+        caProvider:
+          namespace: secrets-store
+          type: ConfigMap
+          name: kube-root-ca.crt
+          key: ca.crt
+      auth:
+        serviceAccount:
+          name: "secrets-store"
+          namespace: "secrets-store"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: secrets-store
+  namespace: secrets-store
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: eso-store-role
+  namespace: secrets-store
+rules:
+  - apiGroups: [""]
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - selfsubjectrulesreviews
+    verbs:
+      - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: secrets-store
+  namespace: secrets-store
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: eso-store-role
+subjects:
+  - kind: ServiceAccount
+    name: secrets-store
+    namespace: secrets-store
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: secrets-demo
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: secrets-demo
+  namespace: secrets-demo
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: secrets-store # name of the SecretStore (or kind specified)
+  target:
+    name: secrets-demo # name of the k8s Secret to be created
+  data:
+    - secretKey: cloudflare
+      remoteRef:
+        key: cloudflare
+        property: FOO
+---
+
