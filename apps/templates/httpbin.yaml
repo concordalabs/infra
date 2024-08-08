@@ -9,13 +9,9 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: ./services/httpbin
+    path: ./services/httpbin/overlays/concorda-dev-do-fra1
     repoURL: https://github.com/concordalabs/infra
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    helm:
-      valueFiles:
-        - values.yaml
-        - values-{{ .Values.spec.clusterName }}.yaml
   syncPolicy:
     # automated:
     #   prune: true

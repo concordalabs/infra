@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+    app.kubernetes.io/name: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+      app.kubernetes.io/name: app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: app
+        app.kubernetes.io/name: app
+    spec:
+      # TODO: topologySpreadConstraints
+      containers:
+        - name: main
+          image: REPLACEME
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: config
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          # TODO: enforce these, since the deployment is managed through here
+          readinessProbe: null
+          livenessProbe: null
+          startupProbe: null
+          # Can be ensured with Kyverno policies
+          securityContext:
+            capabilities:
+              drop: [ALL]
+              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: false
+              seccompProfile:
+                type: RuntimeDefault
+              runAsNonRoot: true

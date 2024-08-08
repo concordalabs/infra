@@ -11,5 +11,5 @@ spec:
   rules:
     - matches:
       backendRefs:
-        - name: httpbin
+        - name: httpbin-app
           port: 3000

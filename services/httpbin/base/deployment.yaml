@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  template:
+    spec:
+      containers:
+        - name: main
+          image: kennethreitz/httpbin:latest
+          command:
+            ["gunicorn", "-b", "0.0.0.0:3000", "httpbin:app", "-k", "gevent"]

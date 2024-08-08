@@ -1,0 +1,16 @@
+# Source: app/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  labels:
+    app: app
+    app.kubernetes.io/name: app
+spec:
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: app
+    app.kubernetes.io/name: app
