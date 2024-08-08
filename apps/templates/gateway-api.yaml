@@ -13,9 +13,9 @@ spec:
     repoURL: https://github.com/concordalabs/infra
     targetRevision: {{ .Values.spec.source.targetRevision }}
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   selfHeal: true
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - Replace=true

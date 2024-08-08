@@ -17,9 +17,9 @@ spec:
         - values.yaml
         - values-{{ .Values.spec.clusterName }}.yaml
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   selfHeal: true
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - Replace=true

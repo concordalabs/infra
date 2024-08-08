@@ -12,8 +12,8 @@ spec:
     repoURL: https://github.com/nginxinc/nginx-gateway-fabric
     targetRevision: v1.3.0
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   selfHeal: true
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - Replace=true
