@@ -1,9 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namePrefix: httpbin- # If placed in the base, it does not render it on configMapGenerator
-namespace: httpbin # If placed in the base, configMapGenerator fails to add hash
-
 generators:
   - ksops.yaml
 
@@ -15,5 +12,6 @@ patches: []
 
 configMapGenerator:
   - name: app
+    behavior: replace # If not used, it has issues on keeping hashes and sufixes https://github.com/kubernetes-sigs/kustomize/issues/710
     envs:
       - envs/app.env

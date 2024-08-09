@@ -8,3 +8,6 @@ resources:
   - service.yaml
 
 buildMetadata: [managedByLabel]
+
+configMapGenerator:
+  - name: app # If no dummy is added, it has issues on keeping hashes and sufixes https://github.com/kubernetes-sigs/kustomize/issues/710
