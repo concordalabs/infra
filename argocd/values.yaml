@@ -11,9 +11,6 @@ configs:
 repoServer:
   # Use init containers to configure custom tooling
   # https://argoproj.github.io/argo-cd/operator-manual/custom_tools/
-  volumes:
-    - name: custom-tools
-      emptyDir: {}
   env:
     - name: XDG_CONFIG_HOME
       value: /.config
@@ -38,3 +35,11 @@ repoServer:
     - mountPath: /usr/local/bin/ksops
       name: custom-tools
       subPath: ksops
+    - mountPath: /.config/sops/age
+      name: sops-age
+  volumes:
+    - name: custom-tools
+      emptyDir: {}
+    - name: sops-age
+      secret:
+        secretName: sops-age

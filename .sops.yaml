@@ -1,7 +1,4 @@
 creation_rules:
-  - path_regex: secrets/concorda-dev-fra1/.*
-    age: age13yy7jedp248y75lmhwpf7yl2fl3le40f4ae4cttg74drsw63kd9qj7sswl
-    encrypted-regex: "^(data|stringData)$"
   - path_regex: services/.*/overlays/concorda-dev-do-fra1/.*
     age: age13yy7jedp248y75lmhwpf7yl2fl3le40f4ae4cttg74drsw63kd9qj7sswl
-    encrypted-regex: "^(data|stringData)$"
+    unencrypted_regex: "^(apiVersion|metadata|kind|type)$"

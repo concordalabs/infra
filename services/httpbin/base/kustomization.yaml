@@ -3,9 +3,12 @@ kind: Kustomization
 
 namePrefix: httpbin-
 
-commonLabels:
-  app: httpbin
-  app.kubernetes.io/name: httpbin
+labels:
+  - pairs:
+      app: httpbin
+      app.kubernetes.io/name: httpbin
+    includeSelectors: true # <-- false by default
+    includeTemplates: true # <-- false by default
 
 resources:
   - ../../../kustomization/app
